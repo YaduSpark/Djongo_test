@@ -79,8 +79,11 @@ WSGI_APPLICATION = 'djongo_pro.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME' : 'djongo_test',
-        'ENFORCE_SCHEMA': True
+        'ENFORCE_SCHEMA': True,
+        'CLIENT': {
+            'name': 'djongo_test',
+            'host':'mongodb+srv://YaduCholayil:YaduCholayil@cluster0.sxnhypo.mongodb.net/?retryWrites=true&w=majority'
+        }
     }
 }
 
