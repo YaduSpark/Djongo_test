@@ -10,7 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import environ
 from pathlib import Path
+
+
+#initialising environment variables
+env = environ.Env()
+environ.Env.read_env() 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#so!)xc!bh3%*lkz3+ss_((8+(8ru1t3w=8v1$nhoo2yx9ogsa'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,7 +88,7 @@ DATABASES = {
         'ENFORCE_SCHEMA': True,
         'CLIENT': {
             'name': 'djongo_test',
-            'host':'mongodb+srv://YaduCholayil:YaduCholayil@cluster0.sxnhypo.mongodb.net/?retryWrites=true&w=majority'
+            'host':env('HOST')
         }
     }
 }
