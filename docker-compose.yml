@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    image: mongo
+    volumes: 
+      - mongodb:/data/db
+    ports:
+      - 27017:27017
+    env_file:
+      - djongo_pro/.env
+    container_name: djongo_test
+
+  migrate:
+    build: .
+    command: python manage.py migrate
+    depends_on: 
+      - db
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    depends_on: 
+      - migrate
+      - db
+
+volumes:
+  mongodb:
